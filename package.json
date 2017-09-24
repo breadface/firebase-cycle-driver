@@ -1,0 +1,34 @@
+{
+  "name": "firebase-cycle-driver",
+  "version": "1.0.0",
+  "description": "A cyclejs driver for firebase",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/breadface/firebase-cycle-driver.git"
+  },
+  "keywords": [
+    "cycle",
+    "cycle-firebase",
+    "firebase",
+    "firebase-driver"
+  ],
+  "author": "Omonori Jesmine <damilolao328@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/breadface/firebase-cycle-driver/issues"
+  },
+  "homepage": "https://github.com/breadface/firebase-cycle-driver#readme",
+  "dependencies": {
+    "firebase": "^4.4.0",
+    "lodash": "^4.17.4",
+    "xstream": "^10.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0"
+  }
+}
