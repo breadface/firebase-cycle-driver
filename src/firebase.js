@@ -1,9 +1,8 @@
 import xstream from 'xstream';
 import  pairwise from 'xstream/extra/pairwise';
-import firebase from 'firebase/app';
-import 'firebase/database';
-import 'firebase/auth';
+import Firebase from 'firebase';
 import get_changes from './getChanges'
+import handleFirebaseAuth from './handleFirebaseAuth'
 
 const create_observable = (ref, value) => {
   let unbind = () => null;
@@ -33,11 +32,11 @@ const create_auth_observable = (auth) =>  {
     })
 }
 
-const makeFirebaseDriver = baseConfig => {
-  firebase.initializeApp(baseConfig);
-  const db = firebase.database()
-  const auth = firebase.auth()
 
+const makeFirebaseDriver = baseConfig => {
+  const baseRef = Firebase.initializeApp(baseConfig);
+  const db = baseRef.database()
+  const auth = baseRef.auth()
   const error$ = xstream.create()
 
   return firebase_state$ => {
@@ -59,21 +58,13 @@ const makeFirebaseDriver = baseConfig => {
           changes.forEach(({path, value}) => {
             if(path.join().slice(0,5) === "$auth"){
               //handle firebase login
-              if(value.sign_out){
-                  let result = auth.signOut()
-                  if(result && result.then){
-                    result.catch(error => {
-                      error$.shamefullySendNext(error)
-                    })
-                  }
-              } else {
-                let result = auth.signInWithEmailAndPassword(value.email, value.password)
+                let [method, ...args] = handleFirebaseAuth(value)
+                let result = method.apply(auth, args)
                 if(result && result.then){
                   result.catch(error => {
                     error$.shamefullySendNext(error)
                   })
                 }
-              }
             } else {
               db.ref(`/` + path.join('/')).set(value)
             }
