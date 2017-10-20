@@ -53,9 +53,6 @@ const handleFirebaseAuth = (firebase, data) => {
       invariant(typeof data.token === 'string', 'A token string is required for token auth')
       return signInWithCustomToken(firebase, data.token)
 
-    case
-
-
     default:
       throw new Error(`Unknown type passed to $auth: '${data.type.toLowerCase()}'`)
   }
