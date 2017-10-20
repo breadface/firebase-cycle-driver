@@ -58,8 +58,8 @@ const makeFirebaseDriver = baseConfig => {
           changes.forEach(({path, value}) => {
             if(path.join().slice(0,5) === "$auth"){
               //handle firebase login
-                let [method, ...args] = handleFirebaseAuth(value)
-                let result = method.apply(auth, args)
+                let result = handleFirebaseAuth(auth, value)
+
                 if(result && result.then){
                   result.catch(error => {
                     error$.shamefullySendNext(error)
