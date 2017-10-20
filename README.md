@@ -6,8 +6,8 @@ A simple cycle-driver for firebase!
 
 #Example 
 ```
-import Cycle from '@cycle/core'
-import {makeFirebaseDriver} from 'cycle-firebase'
+import {run} from '@cycle/core'
+import {makeFirebaseDriver} from 'firebase-cycle-driver'
 import Firebase from 'firebase'
 
 const config = {
@@ -23,7 +23,7 @@ let main = ({firebase}) => {
 // ... Code that uses firebase driver
 }
 
-Cycle.run(main, {
+run(main, {
   firebase: makeFirebaseDriver(config),
   // ... Other drivers
 })
