@@ -51,7 +51,7 @@ const handleFirebaseAuth = (firebase, data) => {
 
     case 'token':
       invariant(typeof data.token === 'string', 'A token string is required for token auth')
-      return .signInWithCustomToken(firebase, data.token)
+      return signInWithCustomToken(firebase, data.token)
 
     case
 
