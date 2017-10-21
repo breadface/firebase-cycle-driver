@@ -1,11 +1,11 @@
 # firebase-cycle-driver
 A simple cycle-driver for firebase 4!
 
-#Installation
+# Installation
 ```npm install firebase-cycle-driver```
 
-#Example 
-```
+# Example 
+```javascript
 import {run} from '@cycle/core'
 import {makeFirebaseDriver} from 'firebase-cycle-driver'
 import Firebase from 'firebase'
@@ -27,11 +27,12 @@ run(main, {
   firebase: makeFirebaseDriver(config),
   // ... Other drivers
 })
-```
-
-#Usage
 
 ```
+
+# Usage
+
+```javascript
   //from main
   //select datatbase sources
   const data$ = sources.firebase.select("database")("/path/to/resource")
@@ -50,17 +51,15 @@ run(main, {
   return sinks
 ```
 
-#API
-#Sink 
+# API
+## Sink 
 
-```
-  use $auth key for authentication sinks
-    a. { type: 'password', email, password } uses signInWithEmailAndPassword
-    b. { type: 'password', create: true, email, password } 
-    creates a new user using createUserWithEmailAndPassword
-    c. { type: 'token', token } uses signInWithCustomToken
-    d. { type: 'anonymously' } uses signInAnonymously
+ use $auth key for authentication sinks
+ 
+ - **{ type: 'password', email, password }** uses signInWithEmailAndPassword
+ - **{ type: 'password', create: true, email, password }** creates a new user using createUserWithEmailAndPassword
+ - **{ type: 'token', token }** uses signInWithCustomToken
+ - **{ type: 'anonymously' }** uses signInAnonymously
     
-     to sign out with signOut create an observable xs.of({$auth: null})
-```
+ to sign out with signOut create an observable `xs.of({$auth: null})`
 
